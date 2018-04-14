@@ -2,24 +2,105 @@
 	ini_set('display_errors','1');
 	session_start();
 	$_SESSION['message'] = '';
-	$user = mysqli_connect('localhost','root','','tradent');
-	$item = mysqli_connect('localhost','root','','items');
+	$con = mysqli_connect('localhost','root','','tradent');
 	if(isset($_POST['submit']))
 	{
+		//category check
+		//furniture
+		if(isset($_POST['furniture']))
+		{
+			$furniture = 1;
+		}
+		else
+		{
+			$furniture = 0;
+		}
+		//sports
+		if(isset($_POST['sports']))
+		{
+			$sports = 1;
+		}
+		else
+		{
+			$sports = 0;
+		}
+		//kitchen
+		if(isset($_POST['kitchen']))
+		{
+			$kitchen = 1;
+		}
+		else
+		{
+			$kitchen = 0;
+		}
+		//clothes
+		if(isset($_POST['clothes']))
+		{
+			$clothes = 1;
+		}
+		else
+		{
+			$clothes = 0;
+		}
+		//electronics
+		if(isset($_POST['electronics']))
+		{
+			$electronics = 1;
+		}
+		else
+		{
+			$electronics = 0;
+		}
+		//home
+		if(isset($_POST['home']))
+		{
+			$home = 1;
+		}
+		else
+		{
+			$home = 0;
+		}
+		//books
+		if(isset($_POST['books']))
+		{
+			$books = 1;
+		}
+		else
+		{
+			$books = 0;
+		}
+		//tools
+		if(isset($_POST['tools']))
+		{
+			$tools = 1;
+		}
+		else
+		{
+			$tools = 0;
+		}
+		//other
+		if(isset($_POST['other']))
+		{
+			$other = 1;
+		}
+		else
+		{
+			$other = 0;
+		}
+		//check if pricing is selected
 		if($_POST['pricing'] == true)
 		{
-			$category = $_POST['category'];
-			
-			$itemname = $item-> real_escape_string($_POST['itemname']);
-			$description = $item-> real_escape_string($_POST['itemdescription']);
+					
+			$itemname = $con-> real_escape_string($_POST['itemname']);
+			$description = $con-> real_escape_string($_POST['itemdescription']);
 			$email = $_SESSION['login'];
-			$price = $item-> real_escape_string($_POST['price']);
-			$pricing = $item-> real_escape_string($_POST['pricing']);
-			$location = $item-> real_escape_string($_POST['location']);
+			$price = $con-> real_escape_string($_POST['price']);
+			$pricing = $con-> real_escape_string($_POST['pricing']);
+			$location = $con-> real_escape_string($_POST['location']);
 			
-			$additem = "INSERT INTO $category (name,description,user,price,location,pricing)"."VALUES('$itemname','$description','$email','$price','$location','$pricing')";
+			$additem = "INSERT INTO items (name,description,user,price,location,pricer,furniture,sports,kitchen,clothes,electronics,home,books,tools,other)"."VALUES('$itemname','$description','$email','$price','$location','$pricing','$furniture','$sports','$kitchen','$clothes','$electronics','$home','$books','$tools','$other')";
 			
-			if($item->query($additem) === true)
+			if($con->query($additem) === true)
 			{
 				$_SESSION['message'] = "Registration Succesful! Welcome MR. $username";
 				header("location: login.php");
@@ -48,15 +129,15 @@
       <input type="text" placeholder="Item Name" name="itemname" required /><br>
       <input type="textarea" placeholder="Description" name="itemdescription" required /><br>
 		
-     	<input type="radio" value="furniture" name="category" required/> Furniture<br>
-	 	<input type="radio" value="Kitchen & Home Appliences" name="category"/> Kitchen & Home Appliences<br>
-		<input type="radio" value="Clothes" name="category"/> Clothes<br>
-		<input type="radio" value="Electronics" name="category"/> Electronics<br>
-		<input type="radio" value="Home Accessories" name="category"/> Home Accessories<br>
-		<input type="radio" value="Sports & Outdoors" name="category"/> Sports & Outdoors<br>
-		<input type="radio" value="Books" name="category"/> Books<br>
-		<input type="radio" value="Tools & Equipment" name="category"/> Tools & Equipment<br>
-		<input type="radio" value="Other" name="category"/> Other<br><br>
+     	<input type="checkbox" value="furniture" name="furniture" /> Furniture<br>
+	 	<input type="checkbox" value="Kitchen & Home Appliences" name="kitchen"/> Kitchen & Home Appliences<br>
+		<input type="checkbox" value="Clothes" name="clothes"/> Clothes<br>
+		<input type="checkbox" value="Electronics" name="electronics"/> Electronics<br>
+		<input type="checkbox" value="Home Accessories" name="home"/> Home Accessories<br>
+		<input type="checkbox" value="Sports & Outdoors" name="sports"/> Sports & Outdoors<br>
+		<input type="checkbox" value="Books" name="books"/> Books<br>
+		<input type="checkbox" value="Tools & Equipment" name="tools"/> Tools & Equipment<br>
+		<input type="checkbox" value="Other" name="other"/> Other<br><br>
 		
 		<input type="radio" value="Sell" name="pricing" required/>Sell<br>
 		<input type="radio" value="Exchange" name="pricing"/>Exchange<br>
