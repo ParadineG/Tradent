@@ -10,7 +10,7 @@ Tradent is an application built primarily for university students to sell, trade
 
 **Frameworks:**
 * Html/Css
-* PhP
+* PhP/Typescript
 
 **Target Platform:**
 Is it a mobile application, a web app, or a combination of multiple interfaces?
