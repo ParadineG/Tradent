@@ -15,5 +15,3 @@ Tradent is an application built primarily for university students to sell, trade
 **Target Platform:**
 Is it a mobile application, a web app, or a combination of multiple interfaces?
 Devices: PCs and mobile devices such as mobile phone and tablets. Platforms: Web app
-
-test
