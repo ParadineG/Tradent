@@ -30,7 +30,8 @@ class App {
     }
     private _setup() {
         if (window.location.hash === '') {
-            window.location.hash = this._mainNavLinks[0].link;
+            // window.location.hash = this._mainNavLinks[0].link;
+            this._page = new FeaturedPosts();
         }
         const nav = new Nav('mainMenu', this._mainNavLinks);
         // tslint:disable-next-line:no-unused-expression
