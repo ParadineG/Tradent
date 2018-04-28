@@ -1,0 +1,39 @@
+{
+
+    "compilerOptions": {
+        "emitBOM": false,
+        "newLine": "CRLF",
+        "pretty": true,
+        "diagnostics": true,
+        "noEmitOnError": false,
+        
+        "strictPropertyInitialization": false,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "allowUnusedLabels": false,
+        "allowUnreachableCode": false,
+        "strictNullChecks": true,
+        "alwaysStrict": true,
+        "strict": true,
+        "jsx": "preserve",
+
+        "target": "es5",
+        "module": "system",
+        "sourceMap": true,
+        "lib":[ "dom", "dom.iterable", "es5", "scripthost", "es6", "es2016.array.include" ],
+        "outFile": "./htdocs/tradent/app.js",
+        "baseUrl": "./htdocs/App/",
+        "paths": {
+            "*": ["*", "generated/*"]
+        },
+        "plugins": [{ "name": "tslint-language-service"}]
+    },
+    "compileOnSave": true,
+    "include": [ "*.ts", "**/*.ts" ],
+    "exclude": ["node_modules", "**/*.spec.ts", ".git", "comp", "dist" , "temp"]
+
+}
