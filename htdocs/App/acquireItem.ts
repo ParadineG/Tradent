@@ -1,9 +1,9 @@
 /// <reference path='helper.ts'/>
 /// <reference path='nav.ts'/>
 /// <reference path='page.ts'/>
-console.log('productBuy.ts');
+console.log('acquireItem.ts');
 
-class ProductBuy extends Page {
+class AcquireItem extends Page {
     private _template: string;
     private _module: HTMLElement | null;
 
@@ -14,11 +14,11 @@ class ProductBuy extends Page {
         this._render();
     }
     protected _cacheDOM() {
-        this._template = Helper.getHTMLTemplate(`templates/productBuy-template.html`);
+        this._template = Helper.getHTMLTemplate(`templates/acquireItem-template.html`);
         this._module = document.querySelector('main');
         if (this._module) {
             this._module.outerHTML = this._template;
-            this._module = document.getElementById('productBuy');
+            this._module = document.getElementById('main');
         }
     }
     protected _bindEvents() {

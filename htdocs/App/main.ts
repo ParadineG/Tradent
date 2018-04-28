@@ -1,7 +1,7 @@
 /// <reference path='helper.ts'/>
 /// <reference path='nav.ts'/>
 /// <reference path='page.ts'/>
-/// <reference path='productBuy.ts'/>
+/// <reference path='acquireItem.ts'/>
 console.log('main.ts');
 
 class App {
@@ -42,7 +42,7 @@ class App {
             (value: INavLink) => {
                 if (window.location.hash === value.link) {
                     if (value.link === this._mainNavLinks[0].link) {
-                        this._page = new ProductBuy();
+                        this._page = new AcquireItem();
                     } else if (value.link === this._mainNavLinks[1].link) {
                         // this._page = new ProductSell(value.link);
                     } else if (value.link === this._mainNavLinks[2].link) {

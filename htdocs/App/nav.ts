@@ -1,6 +1,5 @@
 /// <reference path='helper.ts'/>
 console.log('navigation.ts');
-
 interface INavLink {
     name: string;
     link: string;
