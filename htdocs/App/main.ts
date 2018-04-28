@@ -18,6 +18,8 @@ class App {
     private _page: Page;
 
     constructor() {
+        // tslint:disable-next-line:no-unused-expression
+        this._page;
         this._navLinks.concat(this._mainNavLinks);
         this._bindEvents();
         this._setup();
@@ -40,7 +42,7 @@ class App {
             (value: INavLink) => {
                 if (window.location.hash === value.link) {
                     if (value.link === this._mainNavLinks[0].link) {
-                        this._page = new ProductBuy(value.link);
+                        this._page = new ProductBuy();
                     } else if (value.link === this._mainNavLinks[1].link) {
                         // this._page = new ProductSell(value.link);
                     } else if (value.link === this._mainNavLinks[2].link) {

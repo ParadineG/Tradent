@@ -7,7 +7,7 @@ interface INavLink {
 }
 
 class Nav {
-    private _navName: string;
+    private _name: string;
     private _navs: INavLink[];
 
     private _template: string;
@@ -15,19 +15,19 @@ class Nav {
     private _module: HTMLElement | null;
     private _list: HTMLUListElement;
 
-    constructor(navName: string, navs: INavLink[]) {
+    constructor(name: string, navs: INavLink[]) {
         this._navs = navs;
-        this._navName = navName;
+        this._name = name;
         this._cacheDOM();
         this._bindEvents();
         this._render();
     }
     private _cacheDOM() {
-        this._template = Helper.getHTMLTemplate(`templates/${this._navName}-template.html`);
-        this._module = document.getElementById(this._navName);
+        this._template = Helper.getHTMLTemplate(`templates/${this._name}-template.html`);
+        this._module = document.getElementById(this._name);
         if (this._module) {
             this._module.outerHTML = this._template;
-            this._module = document.getElementById(this._navName);
+            this._module = document.getElementById(this._name);
             if (this._module) {
                 const temp = this._module.querySelector('script');
                 if (temp) {

@@ -1,9 +1,8 @@
 console.log('page.ts');
 // abstract class for menu pages
 class Page {
-    constructor(name: string) {
-        // tslint:disable-next-line:no-unused-expression
-        name;
+    constructor() {
+        // tyhi
     }
     // tslint:disable-next-line:prefer-function-over-method
     protected _cacheDOM() {
