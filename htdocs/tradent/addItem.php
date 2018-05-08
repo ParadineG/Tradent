@@ -124,7 +124,7 @@
 <div class="body-content">
   <div class="module">
     <h1>Create an account</h1>
-    <form class="form" action="addItem.php" method="post" autocomplete="off">
+    <form class="form" method="post" autocomplete="off">
       <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
       <input type="text" placeholder="Item Name" name="itemname" required /><br>
       <input type="textarea" placeholder="Description" name="itemdescription" required /><br>

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="style.css" server="C:/xampp/htdocs/tradent/" local="131678590652998208" remote="131678590650000000" Dst="0" />
-<file name="registration.php" server="C:/xampp/htdocs/tradent/" local="131678604735432669" remote="131678604730000000" Dst="0" />
-<file name="login.php" server="C:/xampp/htdocs/tradent/" local="131680199373762164" remote="131680199370000000" Dst="0" />
-<file name="index.php" server="C:/xampp/htdocs/tradent/" local="131678613010000000" remote="131678613010000000" Dst="0" />
+<file name="style.css" server="C:/xampp/htdocs/tradent/" local="131701997819936441" remote="131701997810000000" Dst="0" />
+<file name="registration.php" server="C:/xampp/htdocs/tradent/" local="131680198370770488" remote="131680198370000000" Dst="0" />
+<file name="login.php" server="C:/xampp/htdocs/tradent/" local="131701978536386114" remote="131701978530000000" Dst="0" />
+<file name="index.php" server="C:/xampp/htdocs/tradent/" local="131680898557607132" remote="131680898550000000" Dst="0" />
 <file name="addItem.php" server="C:/xampp/htdocs/tradent/" local="131681723766726723" remote="131681723760000000" Dst="0" />
+<file name="addService.php" server="C:/xampp/htdocs/tradent/" local="131701982344748620" remote="131701982340000000" Dst="0" />
+<file name="main.html" server="C:/xampp/htdocs/tradent/" local="131699081653850630" remote="131699081650000000" Dst="0" />
+<file name="tradent.sql" server="C:/xampp/htdocs/tradent/" local="131678631664527884" remote="131678631660000000" Dst="0" />
+<file name="items.php" server="C:/xampp/htdocs/tradent/" local="131702799920000000" remote="131702799920000000" Dst="0" />
 </dwsync>
