@@ -1,0 +1,759 @@
+diff --git a/htdocs/tradent/Templates/_notes/dwsync.xml b/htdocs/tradent/Templates/_notes/dwsync.xml
+new file mode 100644
+index 0000000..a95d021
+--- /dev/null
++++ b/htdocs/tradent/Templates/_notes/dwsync.xml
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8" ?>
++<dwsync>
++<file name="acquireItem-template.html" server="C:/xampp/htdocs/tradent/" local="131699081653860666" remote="131699081650000000" Dst="0" />
++<file name="featuredPosts-template.html" server="C:/xampp/htdocs/tradent/" local="131699081653870694" remote="131699081650000000" Dst="0" />
++<file name="mainMenu-template.html" server="C:/xampp/htdocs/tradent/" local="131699081653930844" remote="131699081650000000" Dst="0" />
++</dwsync>
+\ No newline at end of file
+diff --git a/htdocs/tradent/_notes/dwsync.xml b/htdocs/tradent/_notes/dwsync.xml
+index 0973b90..bb5b844 100644
+--- a/htdocs/tradent/_notes/dwsync.xml
++++ b/htdocs/tradent/_notes/dwsync.xml
+@@ -1,8 +1,12 @@
+ <?xml version="1.0" encoding="utf-8" ?>
+ <dwsync>
+-<file name="style.css" server="C:/xampp/htdocs/tradent/" local="131678590652998208" remote="131678590650000000" Dst="0" />
+-<file name="registration.php" server="C:/xampp/htdocs/tradent/" local="131678604735432669" remote="131678604730000000" Dst="0" />
+-<file name="login.php" server="C:/xampp/htdocs/tradent/" local="131680199373762164" remote="131680199370000000" Dst="0" />
+-<file name="index.php" server="C:/xampp/htdocs/tradent/" local="131678613010000000" remote="131678613010000000" Dst="0" />
++<file name="style.css" server="C:/xampp/htdocs/tradent/" local="131701997819936441" remote="131701997810000000" Dst="0" />
++<file name="registration.php" server="C:/xampp/htdocs/tradent/" local="131680198370770488" remote="131680198370000000" Dst="0" />
++<file name="login.php" server="C:/xampp/htdocs/tradent/" local="131701978536386114" remote="131701978530000000" Dst="0" />
++<file name="index.php" server="C:/xampp/htdocs/tradent/" local="131680898557607132" remote="131680898550000000" Dst="0" />
+ <file name="addItem.php" server="C:/xampp/htdocs/tradent/" local="131681723766726723" remote="131681723760000000" Dst="0" />
++<file name="addService.php" server="C:/xampp/htdocs/tradent/" local="131701982344748620" remote="131701982340000000" Dst="0" />
++<file name="main.html" server="C:/xampp/htdocs/tradent/" local="131699081653850630" remote="131699081650000000" Dst="0" />
++<file name="tradent.sql" server="C:/xampp/htdocs/tradent/" local="131678631664527884" remote="131678631660000000" Dst="0" />
++<file name="items.php" server="C:/xampp/htdocs/tradent/" local="131702799920000000" remote="131702799920000000" Dst="0" />
+ </dwsync>
+\ No newline at end of file
+diff --git a/htdocs/tradent/addItem.php b/htdocs/tradent/addItem.php
+index d0ea4b6..9a28e6f 100644
+--- a/htdocs/tradent/addItem.php
++++ b/htdocs/tradent/addItem.php
+@@ -124,7 +124,7 @@
+ <div class="body-content">
+   <div class="module">
+     <h1>Create an account</h1>
+-    <form class="form" action="addItem.php" method="post" autocomplete="off">
++    <form class="form" method="post" autocomplete="off">
+       <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
+       <input type="text" placeholder="Item Name" name="itemname" required /><br>
+       <input type="textarea" placeholder="Description" name="itemdescription" required /><br>
+diff --git a/htdocs/tradent/addService.php b/htdocs/tradent/addService.php
+new file mode 100644
+index 0000000..2acb323
+--- /dev/null
++++ b/htdocs/tradent/addService.php
+@@ -0,0 +1,141 @@
++<?php
++	ini_set('display_errors','1');
++	session_start();
++	$_SESSION['message'] = '';
++	$con = mysqli_connect('localhost','root','','tradent');
++	if(isset($_POST['submit']))
++	{
++		//category check
++		//arts
++		if(isset($_POST['arts']))
++		{
++			$arts = 1;
++		}
++		else
++		{
++			$arts = 0;
++		}
++		//music
++		if(isset($_POST['music']))
++		{
++			$music = 1;
++		}
++		else
++		{
++			$music = 0;
++		}
++		//language
++		if(isset($_POST['language']))
++		{
++			$language = 1;
++		}
++		else
++		{
++			$language = 0;
++		}
++		//general
++		if(isset($_POST['general']))
++		{
++			$general = 1;
++		}
++		else
++		{
++			$general = 0;
++		}
++		//household
++		if(isset($_POST['household']))
++		{
++			$household = 1;
++		}
++		else
++		{
++			$household = 0;
++		}
++		//mecha
++		if(isset($_POST['mecha']))
++		{
++			$mecha = 1;
++		}
++		else
++		{
++			$mecha = 0;
++		}
++		//other
++		if(isset($_POST['other']))
++		{
++			$other = 1;
++		}
++		else
++		{
++			$other = 0;
++		}
++		//check if pricing is selected
++		if($_POST['pricing'] == true)
++		{
++					
++			$itemname = $con-> real_escape_string($_POST['itemname']);
++			$description = $con-> real_escape_string($_POST['itemdescription']);
++			$email = $_SESSION['login'];
++			$price = $con-> real_escape_string($_POST['price']);
++			$pricing = $con-> real_escape_string($_POST['pricing']);
++			$location = $con-> real_escape_string($_POST['location']);
++			
++			$services = "INSERT INTO service (name,description,user,price,location,pricer,arts,music,language,general,household,mecha,other)"."VALUES('$itemname','$description','$email','$price','$location','$pricing','$arts','$music','$language','$general','$household','$mecha','$other')";
++			
++			if($con->query($services) === true)
++			{
++				$_SESSION['message'] = "Registration Succesful! Welcome MR. $username";
++				header("location: addItem.php");
++			}
++			else
++			{		
++				$_SESSION['message'] = "Error While Adding User To Database";
++			}
++		}
++	}
++
++?>
++<!doctype html>
++<html>
++<head>
++<meta charset="utf-8">
++<link rel="stylesheet" href="style.css" type="text/css">
++<title>Add Service</title>
++</head>
++<body>
++<div class="body-content">
++  <div class="module">
++    <h1>Create an account</h1>
++    <form class="form" method="post" autocomplete="off">
++      <div class="alert alert-error"><?php echo $_SESSION['message']?></div>
++      <input type="text" placeholder="Item Name" name="itemname" required /><br>
++      <input type="textarea" placeholder="Description" name="itemdescription" required /><br>
++		Skill Sharing</br>
++     	<input type="checkbox" value="Arts" name="arts" /> Arts<br>
++	 	<input type="checkbox" value="Music" name="music"/> Music<br>
++		<input type="checkbox" value="Languages" name="Language"/> Languages<br>
++		<input type="checkbox" value="General Skills" name="general"/> General Skills<br></br>
++	  	Fixing & Repairing</br>
++		<input type="checkbox" value="Household Items" name="household"/> Household Items<br>
++		<input type="checkbox" value="Mechanical" name="mecha"/> Mechanical<br>
++		<input type="checkbox" value="Other" name="other"/> Other<br><br>
++		
++		<input type="radio" value="Sell" name="pricing" required/>Sell<br>
++		<input type="radio" value="Exchange" name="pricing"/>Exchange<br>
++		<input type="radio" value="Give Away" name="pricing"/>Give Away<br><br>
++	
++		<select name="location" required>
++  			<option value="volvo" >District 1</option>
++  			<option value="saab">District 2</option>
++  			<option value="mercedes">District 3</option>
++  			<option value="audi">District 4</option>
++		</select><br>
++		<input type="number" placeholder="Price" name="price"/>Price<br>
++		<input type="range" value="ranger" min="1" max="100" value="50" name="price"/>Price<br>
++	
++      <input type="submit" value="Submit" name="submit" class="btn btn-block btn-primary" />
++    </form>
++  </div>
++</div>
++</body>
++</html>
+diff --git a/htdocs/tradent/items.php b/htdocs/tradent/items.php
+new file mode 100644
+index 0000000..42ca103
+--- /dev/null
++++ b/htdocs/tradent/items.php
+@@ -0,0 +1,35 @@
++<?php
++	//ini_set('display_errors','1');
++	session_start();
++	$_SESSION['message'] = '';
++	$mysqli = mysqli_connect('localhost','root','','tradent');
++
++?>
++<!doctype html>
++<html>
++<head>
++<meta charset="utf-8">
++<link rel="stylesheet" href="style.css" type="text/css">
++<title>Login Page</title>
++</head>
++<body>
++<div class="body-content">
++  <div class="module">
++    <?php
++	  $global = mysqli_query($mysqli,"SELECT * FROM items ");
++	  $result = mysqli_fetch_array($global);
++	  $row = mysqli_fetch_row ($global);
++	  foreach($global as $row)
++	  {
++		  echo "<div style='border: 2px; border-style: solid; width: 150px; height: 100px;'></br>";
++		  echo "<div style='border: 2px; border-style: solid; width: 50px; height: 20px; margin-top: -20px; margin-left: -2px;'>".$row['name']."</div>";
++		  echo "<div style='border: 2px; border-style: solid; width: 96px; height: 50px; margin-top: -23px; margin-left: 52px;'>".$row['description']."</div>";
++		  echo "<div style='border: 2px; border-style: solid; width: 40px; height: 20px; margin-top: 25px; margin-left: -2px;'>".$row['price']." $</div>";
++		  echo "</div></br></br>";
++	  }
++	
++	?>
++  </div>
++</div>
++</body>
++</html>
+\ No newline at end of file
+diff --git a/htdocs/tradent/login.php b/htdocs/tradent/login.php
+index 1830839..9372e93 100644
+--- a/htdocs/tradent/login.php
++++ b/htdocs/tradent/login.php
+@@ -14,7 +14,8 @@
+ 		if($row['email'] == $email && $row['password'] == $password)
+ 		{
+ 			$_SESSION['login'] = $_POST['email'];
+-			header("location: additem.php");
++			$_SESSION['message'] = 'Good Job';
++			header("location: addService.php");
+ 		}
+ 		else
+ 		{
+@@ -38,7 +39,7 @@
+     <form class="form" action="login.php" method="post" autocomplete="off">
+       <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
+       <input type="email" placeholder="Email" name="email" required />
+-      <input type="password" placeholder="Password" name="password" required />
++		<input type="password" placeholder="Password" name="password" required /></br>
+       <input type="submit" value="Log In" name="login" class="btn btn-block btn-primary" />
+     </form>
+   </div>
+diff --git a/htdocs/tradent/style.css b/htdocs/tradent/style.css
+index e69de29..75f433d 100644
+--- a/htdocs/tradent/style.css
++++ b/htdocs/tradent/style.css
+@@ -0,0 +1,36 @@
++.body-content
++{
++	
++}
++.form
++{
++	align-content: center;
++    margin: 0, auto;
++	display: table;
++	width: 300px;
++	height: 400px;
++	
++}
++input[type=submit]
++{
++    background-color: #4CAF50;
++    border: none;
++	width: 100px;
++    color: white;
++    padding: 16px 32px;
++    text-decoration: none;
++    margin: 0 auto;
++    cursor: pointer;
++}
++textarea 
++{
++    width: 100%;
++    height: 100px;
++    padding: 12px 20px;
++    box-sizing: border-box;
++    border: 2px solid #ccc;
++    border-radius: 4px;
++    background-color: #f8f8f8;
++    font-size: 16px;
++    resize: none;
++}
+\ No newline at end of file
+diff --git a/htdocs/tradent/tradent.sql b/htdocs/tradent/tradent.sql
+new file mode 100644
+index 0000000..2c0eaa0
+--- /dev/null
++++ b/htdocs/tradent/tradent.sql
+@@ -0,0 +1,68 @@
++-- phpMyAdmin SQL Dump
++-- version 4.7.9
++-- https://www.phpmyadmin.net/
++--
++-- Host: 127.0.0.1
++-- Generation Time: Apr 10, 2018 at 09:46 PM
++-- Server version: 10.1.31-MariaDB
++-- PHP Version: 7.2.3
++
++SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
++SET AUTOCOMMIT = 0;
++START TRANSACTION;
++SET time_zone = "+00:00";
++
++
++/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
++/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
++/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
++/*!40101 SET NAMES utf8mb4 */;
++
++--
++-- Database: `tradent`
++--
++
++-- --------------------------------------------------------
++
++--
++-- Table structure for table `users`
++--
++
++CREATE TABLE `users` (
++  `id` int(11) NOT NULL,
++  `username` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
++  `email` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
++  `password` varchar(45) COLLATE utf8_unicode_ci NOT NULL
++) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
++
++--
++-- Dumping data for table `users`
++--
++
++INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
++(14, 'saba', 'gotsiridze.saba@gmail.com', '123');
++
++--
++-- Indexes for dumped tables
++--
++
++--
++-- Indexes for table `users`
++--
++ALTER TABLE `users`
++  ADD PRIMARY KEY (`id`);
++
++--
++-- AUTO_INCREMENT for dumped tables
++--
++
++--
++-- AUTO_INCREMENT for table `users`
++--
++ALTER TABLE `users`
++  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
++COMMIT;
++
++/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
++/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
++/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+diff --git a/patch.diff b/patch.diff
+new file mode 100644
+index 0000000..69cd300
+--- /dev/null
++++ b/patch.diff
+@@ -0,0 +1,376 @@
++diff --git a/htdocs/tradent/Templates/_notes/dwsync.xml b/htdocs/tradent/Templates/_notes/dwsync.xml
++new file mode 100644
++index 0000000..a95d021
++--- /dev/null
+++++ b/htdocs/tradent/Templates/_notes/dwsync.xml
++@@ -0,0 +1,6 @@
+++<?xml version="1.0" encoding="utf-8" ?>
+++<dwsync>
+++<file name="acquireItem-template.html" server="C:/xampp/htdocs/tradent/" local="131699081653860666" remote="131699081650000000" Dst="0" />
+++<file name="featuredPosts-template.html" server="C:/xampp/htdocs/tradent/" local="131699081653870694" remote="131699081650000000" Dst="0" />
+++<file name="mainMenu-template.html" server="C:/xampp/htdocs/tradent/" local="131699081653930844" remote="131699081650000000" Dst="0" />
+++</dwsync>
++\ No newline at end of file
++diff --git a/htdocs/tradent/_notes/dwsync.xml b/htdocs/tradent/_notes/dwsync.xml
++index 0973b90..bb5b844 100644
++--- a/htdocs/tradent/_notes/dwsync.xml
+++++ b/htdocs/tradent/_notes/dwsync.xml
++@@ -1,8 +1,12 @@
++ <?xml version="1.0" encoding="utf-8" ?>
++ <dwsync>
++-<file name="style.css" server="C:/xampp/htdocs/tradent/" local="131678590652998208" remote="131678590650000000" Dst="0" />
++-<file name="registration.php" server="C:/xampp/htdocs/tradent/" local="131678604735432669" remote="131678604730000000" Dst="0" />
++-<file name="login.php" server="C:/xampp/htdocs/tradent/" local="131680199373762164" remote="131680199370000000" Dst="0" />
++-<file name="index.php" server="C:/xampp/htdocs/tradent/" local="131678613010000000" remote="131678613010000000" Dst="0" />
+++<file name="style.css" server="C:/xampp/htdocs/tradent/" local="131701997819936441" remote="131701997810000000" Dst="0" />
+++<file name="registration.php" server="C:/xampp/htdocs/tradent/" local="131680198370770488" remote="131680198370000000" Dst="0" />
+++<file name="login.php" server="C:/xampp/htdocs/tradent/" local="131701978536386114" remote="131701978530000000" Dst="0" />
+++<file name="index.php" server="C:/xampp/htdocs/tradent/" local="131680898557607132" remote="131680898550000000" Dst="0" />
++ <file name="addItem.php" server="C:/xampp/htdocs/tradent/" local="131681723766726723" remote="131681723760000000" Dst="0" />
+++<file name="addService.php" server="C:/xampp/htdocs/tradent/" local="131701982344748620" remote="131701982340000000" Dst="0" />
+++<file name="main.html" server="C:/xampp/htdocs/tradent/" local="131699081653850630" remote="131699081650000000" Dst="0" />
+++<file name="tradent.sql" server="C:/xampp/htdocs/tradent/" local="131678631664527884" remote="131678631660000000" Dst="0" />
+++<file name="items.php" server="C:/xampp/htdocs/tradent/" local="131702799920000000" remote="131702799920000000" Dst="0" />
++ </dwsync>
++\ No newline at end of file
++diff --git a/htdocs/tradent/addItem.php b/htdocs/tradent/addItem.php
++index d0ea4b6..9a28e6f 100644
++--- a/htdocs/tradent/addItem.php
+++++ b/htdocs/tradent/addItem.php
++@@ -124,7 +124,7 @@
++ <div class="body-content">
++   <div class="module">
++     <h1>Create an account</h1>
++-    <form class="form" action="addItem.php" method="post" autocomplete="off">
+++    <form class="form" method="post" autocomplete="off">
++       <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
++       <input type="text" placeholder="Item Name" name="itemname" required /><br>
++       <input type="textarea" placeholder="Description" name="itemdescription" required /><br>
++diff --git a/htdocs/tradent/addService.php b/htdocs/tradent/addService.php
++new file mode 100644
++index 0000000..2acb323
++--- /dev/null
+++++ b/htdocs/tradent/addService.php
++@@ -0,0 +1,141 @@
+++<?php
+++	ini_set('display_errors','1');
+++	session_start();
+++	$_SESSION['message'] = '';
+++	$con = mysqli_connect('localhost','root','','tradent');
+++	if(isset($_POST['submit']))
+++	{
+++		//category check
+++		//arts
+++		if(isset($_POST['arts']))
+++		{
+++			$arts = 1;
+++		}
+++		else
+++		{
+++			$arts = 0;
+++		}
+++		//music
+++		if(isset($_POST['music']))
+++		{
+++			$music = 1;
+++		}
+++		else
+++		{
+++			$music = 0;
+++		}
+++		//language
+++		if(isset($_POST['language']))
+++		{
+++			$language = 1;
+++		}
+++		else
+++		{
+++			$language = 0;
+++		}
+++		//general
+++		if(isset($_POST['general']))
+++		{
+++			$general = 1;
+++		}
+++		else
+++		{
+++			$general = 0;
+++		}
+++		//household
+++		if(isset($_POST['household']))
+++		{
+++			$household = 1;
+++		}
+++		else
+++		{
+++			$household = 0;
+++		}
+++		//mecha
+++		if(isset($_POST['mecha']))
+++		{
+++			$mecha = 1;
+++		}
+++		else
+++		{
+++			$mecha = 0;
+++		}
+++		//other
+++		if(isset($_POST['other']))
+++		{
+++			$other = 1;
+++		}
+++		else
+++		{
+++			$other = 0;
+++		}
+++		//check if pricing is selected
+++		if($_POST['pricing'] == true)
+++		{
+++					
+++			$itemname = $con-> real_escape_string($_POST['itemname']);
+++			$description = $con-> real_escape_string($_POST['itemdescription']);
+++			$email = $_SESSION['login'];
+++			$price = $con-> real_escape_string($_POST['price']);
+++			$pricing = $con-> real_escape_string($_POST['pricing']);
+++			$location = $con-> real_escape_string($_POST['location']);
+++			
+++			$services = "INSERT INTO service (name,description,user,price,location,pricer,arts,music,language,general,household,mecha,other)"."VALUES('$itemname','$description','$email','$price','$location','$pricing','$arts','$music','$language','$general','$household','$mecha','$other')";
+++			
+++			if($con->query($services) === true)
+++			{
+++				$_SESSION['message'] = "Registration Succesful! Welcome MR. $username";
+++				header("location: addItem.php");
+++			}
+++			else
+++			{		
+++				$_SESSION['message'] = "Error While Adding User To Database";
+++			}
+++		}
+++	}
+++
+++?>
+++<!doctype html>
+++<html>
+++<head>
+++<meta charset="utf-8">
+++<link rel="stylesheet" href="style.css" type="text/css">
+++<title>Add Service</title>
+++</head>
+++<body>
+++<div class="body-content">
+++  <div class="module">
+++    <h1>Create an account</h1>
+++    <form class="form" method="post" autocomplete="off">
+++      <div class="alert alert-error"><?php echo $_SESSION['message']?></div>
+++      <input type="text" placeholder="Item Name" name="itemname" required /><br>
+++      <input type="textarea" placeholder="Description" name="itemdescription" required /><br>
+++		Skill Sharing</br>
+++     	<input type="checkbox" value="Arts" name="arts" /> Arts<br>
+++	 	<input type="checkbox" value="Music" name="music"/> Music<br>
+++		<input type="checkbox" value="Languages" name="Language"/> Languages<br>
+++		<input type="checkbox" value="General Skills" name="general"/> General Skills<br></br>
+++	  	Fixing & Repairing</br>
+++		<input type="checkbox" value="Household Items" name="household"/> Household Items<br>
+++		<input type="checkbox" value="Mechanical" name="mecha"/> Mechanical<br>
+++		<input type="checkbox" value="Other" name="other"/> Other<br><br>
+++		
+++		<input type="radio" value="Sell" name="pricing" required/>Sell<br>
+++		<input type="radio" value="Exchange" name="pricing"/>Exchange<br>
+++		<input type="radio" value="Give Away" name="pricing"/>Give Away<br><br>
+++	
+++		<select name="location" required>
+++  			<option value="volvo" >District 1</option>
+++  			<option value="saab">District 2</option>
+++  			<option value="mercedes">District 3</option>
+++  			<option value="audi">District 4</option>
+++		</select><br>
+++		<input type="number" placeholder="Price" name="price"/>Price<br>
+++		<input type="range" value="ranger" min="1" max="100" value="50" name="price"/>Price<br>
+++	
+++      <input type="submit" value="Submit" name="submit" class="btn btn-block btn-primary" />
+++    </form>
+++  </div>
+++</div>
+++</body>
+++</html>
++diff --git a/htdocs/tradent/items.php b/htdocs/tradent/items.php
++new file mode 100644
++index 0000000..42ca103
++--- /dev/null
+++++ b/htdocs/tradent/items.php
++@@ -0,0 +1,35 @@
+++<?php
+++	//ini_set('display_errors','1');
+++	session_start();
+++	$_SESSION['message'] = '';
+++	$mysqli = mysqli_connect('localhost','root','','tradent');
+++
+++?>
+++<!doctype html>
+++<html>
+++<head>
+++<meta charset="utf-8">
+++<link rel="stylesheet" href="style.css" type="text/css">
+++<title>Login Page</title>
+++</head>
+++<body>
+++<div class="body-content">
+++  <div class="module">
+++    <?php
+++	  $global = mysqli_query($mysqli,"SELECT * FROM items ");
+++	  $result = mysqli_fetch_array($global);
+++	  $row = mysqli_fetch_row ($global);
+++	  foreach($global as $row)
+++	  {
+++		  echo "<div style='border: 2px; border-style: solid; width: 150px; height: 100px;'></br>";
+++		  echo "<div style='border: 2px; border-style: solid; width: 50px; height: 20px; margin-top: -20px; margin-left: -2px;'>".$row['name']."</div>";
+++		  echo "<div style='border: 2px; border-style: solid; width: 96px; height: 50px; margin-top: -23px; margin-left: 52px;'>".$row['description']."</div>";
+++		  echo "<div style='border: 2px; border-style: solid; width: 40px; height: 20px; margin-top: 25px; margin-left: -2px;'>".$row['price']." $</div>";
+++		  echo "</div></br></br>";
+++	  }
+++	
+++	?>
+++  </div>
+++</div>
+++</body>
+++</html>
++\ No newline at end of file
++diff --git a/htdocs/tradent/login.php b/htdocs/tradent/login.php
++index 1830839..9372e93 100644
++--- a/htdocs/tradent/login.php
+++++ b/htdocs/tradent/login.php
++@@ -14,7 +14,8 @@
++ 		if($row['email'] == $email && $row['password'] == $password)
++ 		{
++ 			$_SESSION['login'] = $_POST['email'];
++-			header("location: additem.php");
+++			$_SESSION['message'] = 'Good Job';
+++			header("location: addService.php");
++ 		}
++ 		else
++ 		{
++@@ -38,7 +39,7 @@
++     <form class="form" action="login.php" method="post" autocomplete="off">
++       <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
++       <input type="email" placeholder="Email" name="email" required />
++-      <input type="password" placeholder="Password" name="password" required />
+++		<input type="password" placeholder="Password" name="password" required /></br>
++       <input type="submit" value="Log In" name="login" class="btn btn-block btn-primary" />
++     </form>
++   </div>
++diff --git a/htdocs/tradent/style.css b/htdocs/tradent/style.css
++index e69de29..75f433d 100644
++--- a/htdocs/tradent/style.css
+++++ b/htdocs/tradent/style.css
++@@ -0,0 +1,36 @@
+++.body-content
+++{
+++	
+++}
+++.form
+++{
+++	align-content: center;
+++    margin: 0, auto;
+++	display: table;
+++	width: 300px;
+++	height: 400px;
+++	
+++}
+++input[type=submit]
+++{
+++    background-color: #4CAF50;
+++    border: none;
+++	width: 100px;
+++    color: white;
+++    padding: 16px 32px;
+++    text-decoration: none;
+++    margin: 0 auto;
+++    cursor: pointer;
+++}
+++textarea 
+++{
+++    width: 100%;
+++    height: 100px;
+++    padding: 12px 20px;
+++    box-sizing: border-box;
+++    border: 2px solid #ccc;
+++    border-radius: 4px;
+++    background-color: #f8f8f8;
+++    font-size: 16px;
+++    resize: none;
+++}
++\ No newline at end of file
++diff --git a/htdocs/tradent/tradent.sql b/htdocs/tradent/tradent.sql
++new file mode 100644
++index 0000000..2c0eaa0
++--- /dev/null
+++++ b/htdocs/tradent/tradent.sql
++@@ -0,0 +1,68 @@
+++-- phpMyAdmin SQL Dump
+++-- version 4.7.9
+++-- https://www.phpmyadmin.net/
+++--
+++-- Host: 127.0.0.1
+++-- Generation Time: Apr 10, 2018 at 09:46 PM
+++-- Server version: 10.1.31-MariaDB
+++-- PHP Version: 7.2.3
+++
+++SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+++SET AUTOCOMMIT = 0;
+++START TRANSACTION;
+++SET time_zone = "+00:00";
+++
+++
+++/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+++/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+++/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+++/*!40101 SET NAMES utf8mb4 */;
+++
+++--
+++-- Database: `tradent`
+++--
+++
+++-- --------------------------------------------------------
+++
+++--
+++-- Table structure for table `users`
+++--
+++
+++CREATE TABLE `users` (
+++  `id` int(11) NOT NULL,
+++  `username` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+++  `email` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+++  `password` varchar(45) COLLATE utf8_unicode_ci NOT NULL
+++) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+++
+++--
+++-- Dumping data for table `users`
+++--
+++
+++INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+++(14, 'saba', 'gotsiridze.saba@gmail.com', '123');
+++
+++--
+++-- Indexes for dumped tables
+++--
+++
+++--
+++-- Indexes for table `users`
+++--
+++ALTER TABLE `users`
+++  ADD PRIMARY KEY (`id`);
+++
+++--
+++-- AUTO_INCREMENT for dumped tables
+++--
+++
+++--
+++-- AUTO_INCREMENT for table `users`
+++--
+++ALTER TABLE `users`
+++  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+++COMMIT;
+++
+++/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+++/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+++/*!40101 SET COLLATION_CONNEC
+\ No newline at end of file
