@@ -10,17 +10,21 @@ class App {
                                         {name: 'Item', link: '#provide/item'},
                                         {name: 'Service', link: '#provide/service'}];
     private _personalNavLinks: INavLink[] = [{name: 'My Profile', link: '#person/self/'},
-                                    {name: 'My Items', link: '#person/self/items'},
-                                    {name: 'Wishlist', link: '#person/self/wish'},
-                                    {name: 'Trade History', link: '#person/self/trade'},
-                                    {name: 'Messages', link: '#person/self/messages'}];
+                                             {name: 'My Items', link: '#person/self/items'},
+                                             {name: 'Wishlist', link: '#person/self/wish'},
+                                             {name: 'Trade History', link: '#person/self/trade'},
+                                             {name: 'Messages', link: '#person/self/messages'}];
     private _navLinks: INavLink[] = [];
+
+    private _perNavLinks: INavLink[] = [];
+
     private _page: Page;
 
     constructor() {
         // tslint:disable-next-line:no-unused-expression
         this._page;
         this._navLinks.concat(this._mainNavLinks);
+        this._perNavLinks.concat(this._personalNavLinks)
         this._bindEvents();
         this._setup();
         this._urlChanged();
@@ -37,6 +41,11 @@ class App {
         // tslint:disable-next-line:no-unused-expression
         nav;
         this._urlChanged();
+
+        const personalnav = new Nav('personalMenu', this._personalNavLinks);
+        // tslint:disable-next-line:no-unused-expression
+        personalnav;
+        this._urlChangedpersonal();
     }
     private _urlChanged() {
         this._mainNavLinks.forEach(
@@ -47,8 +56,28 @@ class App {
                     } else if (value.link === this._mainNavLinks[1].link) {
                         // this._page = new ProductSell(value.link);
                     } else if (value.link === this._mainNavLinks[2].link) {
-                        // this._page = new ServiceBuy(value.link);
+                        this._page = new Wishlist();
                     } else if (value.link === this._mainNavLinks[3].link) {
+                        // this._page = new ServiceSell(value.link);
+                    } else if (value.link === this._mainNavLinks[4].link) {
+                        // this._page = new ServiceSell(value.link);
+                    } 
+                }
+            }
+        );
+    }
+
+    private _urlChangedpersonal() {
+        this._personalNavLinks.forEach(
+            (value: INavLink) => {
+                if (window.location.hash === value.link) {
+                    if (value.link === this._personalNavLinks[0].link) {
+                        this._page = new MyProfile();
+                    } else if (value.link === this._personalNavLinks[1].link) {
+                        // this._page = new ProductSell(value.link);
+                    } else if (value.link === this._personalNavLinks[2].link) {
+                        // this._page = new ServiceBuy(value.link);
+                    } else if (value.link === this._personalNavLinks[3].link) {
                         // this._page = new ServiceSell(value.link);
                     }
                 }
