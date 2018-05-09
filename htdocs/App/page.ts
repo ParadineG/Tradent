@@ -1,4 +1,12 @@
 console.log('page.ts');
+interface Profile {
+    name: string,
+    image: string,
+    description: string,
+    facebook: string,
+    instagram: string,
+    twitter: string
+}
 // abstract class for menu pages
 class Page {
     constructor() {
