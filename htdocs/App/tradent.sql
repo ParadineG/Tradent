@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2018 at 11:41 AM
+-- Generation Time: May 09, 2018 at 01:46 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.0.28
 
@@ -52,7 +52,39 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `name`, `description`, `user`, `furniture`, `sports`, `kitchen`, `clothes`, `electronics`, `home`, `books`, `tools`, `other`, `price`, `pricer`, `location`) VALUES
-(1, '321321312', '312312321', 'sbg@tlu.ee', 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'Exchange', 'mercedes');
+(2, '123', '123', '', 0, 0, 0, 0, 1, 0, 0, 0, 0, 123, 'Give Away', 'volvo'),
+(3, '321', 'frt', '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 12, 'Exchange', 'volvo'),
+(4, 'asdfsdfsa', 'asdasasfsd', '', 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Give Away', 'volvo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` double NOT NULL,
+  `location` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pricer` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `arts` tinyint(1) NOT NULL,
+  `music` tinyint(1) NOT NULL,
+  `language` tinyint(1) NOT NULL,
+  `general` tinyint(1) NOT NULL,
+  `household` tinyint(1) NOT NULL,
+  `mecha` tinyint(1) NOT NULL,
+  `other` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`id`, `name`, `description`, `user`, `price`, `location`, `pricer`, `arts`, `music`, `language`, `general`, `household`, `mecha`, `other`) VALUES
+(4, 'sa', 'sa', 'sbg@tlu.ee', 7, 'volvo', 'Give Away', 0, 0, 0, 0, 0, 1, '0');
 
 -- --------------------------------------------------------
 
@@ -78,9 +110,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile`, `info`, `facebook`, `tweeter`, `instagram`, `linkedIn`) VALUES
-(1, 'LierLoki', 'sbg@tlu.ee', '123', NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'LierLoki', '123@123', '123', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, '123123123', 'asfgjhadsjfgh@asdgfasfa', '123', NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 'Saba', 'sbg@tlu.ee', '123', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -90,6 +120,12 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile`, `info`, `
 -- Indexes for table `items`
 --
 ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -106,13 +142,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

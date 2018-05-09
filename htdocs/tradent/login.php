@@ -14,7 +14,8 @@
 		if($row['email'] == $email && $row['password'] == $password)
 		{
 			$_SESSION['login'] = $_POST['email'];
-			header("location: additem.php");
+			$_SESSION['message'] = 'Good Job';
+			header("location: addService.php");
 		}
 		else
 		{
@@ -38,7 +39,7 @@
     <form class="form" action="login.php" method="post" autocomplete="off">
       <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
       <input type="email" placeholder="Email" name="email" required />
-      <input type="password" placeholder="Password" name="password" required />
+		<input type="password" placeholder="Password" name="password" required /></br>
       <input type="submit" value="Log In" name="login" class="btn btn-block btn-primary" />
     </form>
   </div>
