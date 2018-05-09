@@ -15,7 +15,7 @@
 		{
 			$_SESSION['login'] = $_POST['email'];
 			$_SESSION['message'] = 'Good Job';
-			header("location: addService.php");
+			header("location: myitems.php");
 		}
 		else
 		{
@@ -32,14 +32,19 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 <title>Login Page</title>
 </head>
-<body>
+<body style="background-color: #28b78d">
 <div class="body-content">
   <div class="module">
-    <h1>Please Log In</h1>
-    <form class="form" action="login.php" method="post" autocomplete="off">
-      <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
-      <input type="email" placeholder="Email" name="email" required />
-		<input type="password" placeholder="Password" name="password" required /></br>
+    
+    <form class="form" method="post" 
+		 autocomplete="off">
+		<h1 class="reg">Please Log In</h1></br></br></br>
+      <div class="alert"><?php echo $_SESSION['message'] ?></div>
+	  <p class="reg">E-Mail</p>
+      <input type="email" name="email" required />
+		<p class="reg">Password</p>
+		<input type="password" name="password" required /></br></br>
+		<a class="reg" style="margin-left: 27%;text-decoration: none;" href="registration.php">Create an Account</a>
       <input type="submit" value="Log In" name="login" class="btn btn-block btn-primary" />
     </form>
   </div>
