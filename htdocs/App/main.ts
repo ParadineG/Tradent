@@ -4,6 +4,8 @@
 /// <reference path='acquireItem.ts'/>
 /// <reference path='myProfile.ts'/>
 /// <reference path='myProfileEdit.ts'/>
+/// <reference path='provideItem.ts'/>
+/// <reference path='provideService.ts'/>
 console.log('main.ts');
 
 class App {
@@ -54,9 +56,9 @@ class App {
         } else if (window.location.hash === this._mainNavLinks[1].link) {
             // this._page = new ProductSell(value.link);
         } else if (window.location.hash === this._mainNavLinks[2].link) {
-            this._page = new Wishlist();
+            this._page = new ProvideItem();
         } else if (window.location.hash === this._mainNavLinks[3].link) {
-            // this._page = new ServiceSell(value.link);
+            this._page = new ProvideService();
         } else if (window.location.hash === this._personalNavLinks[0].link) {
             this._page = new MyProfile();
         } else if (window.location.hash === this._personalNavLinks[1].link) {

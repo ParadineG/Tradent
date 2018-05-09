@@ -1,0 +1,50 @@
+<main id="provideService">
+    <h5>PROVIDE SERVICE</h5>
+    <form class="form" method="post" autocomplete="off">
+        <label for="itemname">Service Name</label>
+        <input type="text" placeholder="Service Name" name="itemname" required /><br>
+        <label for="itemdescription">Description</label>
+        <input type="textarea" placeholder="Description" name="itemdescription" required /><br>
+          <label>Skill Sharing</label></br>
+           <input type="checkbox" value="Arts" name="arts" />
+           <label for="arts">Arts</label><br>
+           <input type="checkbox" value="Music" name="music"/> 
+           <label for="music">Music</label><br>
+          <input type="checkbox" value="Languages" name="Language"/> 
+          <label for="Language">Languages</label><br>
+          <input type="checkbox" value="General Skills" name="general"/> 
+          <label for="general">General Skills</label><br></br>
+           <label>Fixing & Repairing</label></br>
+          <input type="checkbox" value="Household Items" name="household"/>
+          <label for="household">Household Items</label><br>
+          <input type="checkbox" value="Mechanical" name="mecha"/> 
+          <label for="mecha">Mechanical</label><br>
+          <input type="checkbox" value="Other" name="other"/> 
+          <label for="other">Other</label><br><br>
+          
+          <input type="radio" value="Sell" name="pricing" required/>
+          <label for="pricing">Sell</label><br>
+          <input type="radio" value="Exchange" name="pricing"/>
+          <label for="pricing">Exchange</label><br>
+          <input type="radio" value="Give Away" name="pricing"/>
+          <label for="pricing">Give Away</label><br><br>
+
+          <label for="location">Location</label>
+          <select name="location" required>
+            <option value="Central" >Central Tallinn</option>
+            <option value="Haabersti">Haabersti</option>
+            <option value="Kristiine">Kristiine</option>
+            <option value="Lasnamae">Lasnamae</option>
+            <option value="Mustamae">Mustamae</option>
+            <option value="Nomme">Nomme</option>
+            <option value="Northern">Northern Tallinn</option>
+            <option value="Pirita">Pirita</option>
+          </select><br>
+          <input type="number" placeholder="Price" name="price"/>
+          <label for="price">Price</label><br>
+         
+      
+        <input type="submit" value="Submit" name="submit" class="btn btn-block btn-primary" />
+      </form>
+                   
+</main>
