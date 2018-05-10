@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2018 at 01:46 PM
+-- Generation Time: May 09, 2018 at 07:25 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.0.28
 
@@ -32,6 +32,7 @@ CREATE TABLE `items` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `photo` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   `user` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `furniture` tinyint(4) DEFAULT NULL,
   `sports` tinyint(4) DEFAULT NULL,
@@ -51,10 +52,12 @@ CREATE TABLE `items` (
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `description`, `user`, `furniture`, `sports`, `kitchen`, `clothes`, `electronics`, `home`, `books`, `tools`, `other`, `price`, `pricer`, `location`) VALUES
-(2, '123', '123', '', 0, 0, 0, 0, 1, 0, 0, 0, 0, 123, 'Give Away', 'volvo'),
-(3, '321', 'frt', '', 0, 0, 0, 0, 0, 0, 1, 0, 0, 12, 'Exchange', 'volvo'),
-(4, 'asdfsdfsa', 'asdasasfsd', '', 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 'Give Away', 'volvo');
+INSERT INTO `items` (`id`, `name`, `description`, `photo`, `user`, `furniture`, `sports`, `kitchen`, `clothes`, `electronics`, `home`, `books`, `tools`, `other`, `price`, `pricer`, `location`) VALUES
+(14, '12345332345', '1324563245', '/action-adventure-puzzledungeons-rpg-forgotten-game-wallpapers-free-wallpaper-free-artworks-free-warrior-magic-dragon-hd-fantasy-dragons-realms.jpg', '', 0, 0, 1, 0, 0, 0, 0, 0, 0, 51, 'Sell', 'Central'),
+(15, '123456432', '213456432456', 'sbg@tlu.ee/29214776_1851369181554450_8703354043948335104_n.jpg', 'sbg@tlu.ee', 0, 0, 0, 0, 0, 1, 0, 0, 0, 51, 'Sell', 'Central'),
+(16, '231456786543234567', '132456432456ty643234', 'photos/4/action-adventure-puzzledungeons-rpg-forgotten-game-wallpapers-free-wallpaper-free-artworks-free-warrior-magic-dragon-hd-fantasy-dragons-realms.jpg', 'sbg@tlu.ee', 0, 0, 0, 0, 0, 0, 1, 0, 0, 51, 'Sell', 'Central'),
+(17, '124353645', '12435676453', 'photos/4/29214776_1851369181554450_8703354043948335104_n.jpg', 'sbg@tlu.ee', 1, 0, 0, 0, 0, 0, 0, 0, 0, 51, 'Sell', 'Central'),
+(18, '324565432134567', '32145643213456', 'photos/4/action-adventure-puzzledungeons-rpg-forgotten-game-wallpapers-free-wallpaper-free-artworks-free-warrior-magic-dragon-hd-fantasy-dragons-realms.jpg', 'sbg@tlu.ee', 0, 0, 0, 0, 0, 0, 0, 1, 0, 51, 'Sell', 'Central');
 
 -- --------------------------------------------------------
 
@@ -142,7 +145,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `service`

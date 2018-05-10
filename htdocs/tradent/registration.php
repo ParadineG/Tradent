@@ -42,22 +42,28 @@
 ?>
 <!doctype html>
 <html>
-<head>
+<head <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <meta charset="utf-8">
 <link rel="stylesheet" href="style.css" type="text/css">
 <title>Registration Page</title>
 </head>
-<body>
+<body style="background-color: #28b78d">
 <div class="body-content">
   <div class="module">
-    <h1>Create an account</h1>
-    <form class="form" action="registration.php" method="post" autocomplete="off">
-      <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div>
-      <input type="text" placeholder="User Name" name="username" required />
-      <input type="email" placeholder="Email" name="email" required />
-      <input type="password" placeholder="Password" name="password" required />
-      <input type="password" placeholder="Confirm Password" name="confirmpassword" required />
-      <input type="submit" value="Register" name="register" class="btn btn-block btn-primary" />
+    
+    <form class="form" method="post" autocomplete="off" >
+		<h1 class="reg">Create an Account</h1></br></br></br>
+      <div class="alert alert-error"><?php echo $_SESSION['message'] ?></div></br>
+	  <p class="reg">Full Name</p> 
+      <input type="text" name="username" required />
+	</br>
+	<p class="reg">E-Mail</p>
+      <input type="email" name="email" required /></br>
+	<p class="reg">Password</p>
+	<input type="password" name="password" required /></br>
+	<p class="reg">Repeat Password</p>
+		<input type="password" name="confirmpassword" required /></br></br>
+      <input type="submit" value="Register" name="register" class="btn"/>
     </form>
   </div>
 </div>

@@ -1,25 +1,66 @@
-.body-content
-{
-	
+header {
+    position: top;
+    background-color:white;
+    width: 100%;
+    text-align:left;
+    display:inline-block;
 }
-.form
+
+
+
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+}
+.alert
 {
-	align-content: center;
-    margin: 0, auto;
-	display: table;
+	margin-left: 25%;
+	text-decoration: none;
+	color: red;
+}
+.reg
+{
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	margin-bottom: 3px;
+	margin-top: 0px;
+}
+input[type=email], input[type=password], input[type=text]
+{
+	width: 100%;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+h1
+{
+	margin: 0 auto; 
+	display: block; 
+	text-align: center; 
+}
+form
+{
+	text-align: left;
 	width: 300px;
-	height: 400px;
-	
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 15%;
 }
 input[type=submit]
 {
-    background-color: #4CAF50;
+    background-color: black;
     border: none;
-	width: 100px;
+	width: 100%;
     color: white;
-    padding: 16px 32px;
+	height: 50px;
+	text-align: center;
     text-decoration: none;
-    margin: 0 auto;
+    margin-left: 0px;
     cursor: pointer;
 }
 textarea 

@@ -1,0 +1,55 @@
+<main id="provideItem">
+    <h5>PROVIDE ITEM</h5>
+    <form class="form" action="upload.php" method="post" autocomplete="off" enctype="multipart/form-data">
+        <label for="itemname">Item Name</label><br>
+        <input type="text" placeholder="Item Name" name="itemname" required /><br>
+        <label for="itemdescription">Description</label><br>
+        <input type="textarea" placeholder="Description" name="itemdescription" required /><br>
+        <label for="fileToUpload">Photo</label><br>
+        <input type="file" name="fileToUpload" id="fileToUpload"></br>
+        <label>Category</label><br>
+         <input type="checkbox" value="furniture" name="furniture" /> 
+         <label for="furniture">Furniture</label><br>
+         <input type="checkbox" value="Kitchen & Home Appliences" name="kitchen"/>
+         <label for="kitchen">Kitchen & Home Appliances</label><br>
+        <input type="checkbox" value="Clothes" name="clothes"/> 
+        <label for="clothes">Clothes</label><br>
+        <input type="checkbox" value="Electronics" name="electronics"/> 
+        <label for="electronics">Electronics</label><br>
+        <input type="checkbox" value="Home Accessories" name="home"/>
+        <label for="home">Home Accessories</label><br>
+        <input type="checkbox" value="Sports & Outdoors" name="sports"/> 
+        <label for="sports">Sports & Outdoors</label><br>
+        <input type="checkbox" value="Books" name="books"/>
+        <label for="books">Books</label><br>
+        <input type="checkbox" value="Tools & Equipment" name="tools"/> 
+        <label for="tools">Tools & Equipment</label><br>
+        <input type="checkbox" value="Other" name="other"/> 
+        <label for="other">Other</label><br><br>
+		
+        <input type="radio" value="Sell" name="pricing" required/>
+        <label for="pricing">Sell</label><br>
+        <input type="radio" value="Exchange" name="pricing"/>
+        <label for="pricing">Exchange</label><br>
+        <input type="radio" value="Give Away" name="pricing"/>
+        <label for="pricing">Give Away</label><br><br>
+        
+        <label for="location">Location</label>
+		<select name="location" required>
+  			<option value="Central" >Central Tallinn</option>
+  			<option value="Haabersti">Haabersti</option>
+  			<option value="Kristiine">Kristiine</option>
+  			<option value="Lasnamae">Lasnamae</option>
+			<option value="Mustamae">Mustamae</option>
+			<option value="Nomme">Nomme</option>
+			<option value="Northern">Northern Tallinn</option>
+			<option value="Pirita">Pirita</option>
+		</select><br>
+		
+        <input type="number" placeholder="Price" name="price"/>
+        <label for="price">Price</label><br>
+		
+      <input type="submit" value="Submit" name="submit" class="btn btn-block btn-primary" />
+    </form>
+                   
+</main>

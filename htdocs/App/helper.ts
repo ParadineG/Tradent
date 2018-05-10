@@ -33,7 +33,7 @@ namespace Helper {
             if (this.readyState === 4 && this.status === 200) {
                 // tslint:disable-next-line:no-invalid-this
                 templateHTML = this.responseText;
-                console.log(templateHTML);
+                // console.log(templateHTML);
             }
         };
         xmlHttp.open('GET', file, false);
