@@ -14,8 +14,8 @@ class MyProfileEdit extends Page {
     private _facebook: HTMLInputElement | null;
     private _instagram: HTMLInputElement | null;
     private _twitter: HTMLInputElement | null;
-    private _profile: Profile = {
-        name: 'Jana M Saar', 
+    private _profile: IProfile = {
+        name: 'Jana M Saar',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
         description: `Hello!
     
@@ -37,7 +37,7 @@ class MyProfileEdit extends Page {
         if (this._module) {
             this._module.outerHTML = this._template;
             this._module = document.getElementById('myProfileEdit');
-            if (this._module){
+            if (this._module) {
                 this._buttonCancel = this._module.querySelector('#cancelChanges');
                 this._buttonSave = this._module.querySelector('#saveChanges');
                 this._name = this._module.querySelector('#profileName');
@@ -60,23 +60,23 @@ class MyProfileEdit extends Page {
     }
     // tslint:disable-next-line:prefer-function-over-method
     protected _render() {
-        if(this._module){
-            if(this._name){
+        if(this._module) {
+            if(this._name) {
                 this._name.value = this._profile.name;
             }
-            if(this._image){
+            if(this._image) {
                 this._image.src = this._profile.image;
             }
-            if(this._description){
+            if(this._description) {
                 this._description.innerText = this._profile.description;
             }
-            if(this._facebook){
+            if(this._facebook) {
                 this._facebook.value = this._profile.facebook;
             }
-            if(this._instagram){
-                this._instagram.value= this._profile.instagram;
+            if(this._instagram) {
+                this._instagram.value = this._profile.instagram;
             }
-            if(this._twitter){
+            if(this._twitter) {
                 this._twitter.value = this._profile.twitter;
             }
             /*let parsePass1 = Helper.parseHTMLString(this._template, '{{name}}', this._profile.name);

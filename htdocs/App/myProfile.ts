@@ -13,7 +13,7 @@ class MyProfile extends Page {
     private _facebook: HTMLLinkElement | null;
     private _instagram: HTMLLinkElement | null;
     private _twitter: HTMLLinkElement | null;
-    private _profile: Profile = {
+    private _profile: IProfile = {
         name: 'Jana M Saar', 
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg',
         description: `Hello!
