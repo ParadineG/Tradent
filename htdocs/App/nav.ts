@@ -33,9 +33,7 @@ class Nav {
         window.addEventListener('hashchange', this._urlChanged.bind(this));
     }
     private _render() {
-        
-                //const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{name}}', value.name);
-
+        // const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{name}}', value.name);
     }
     private _urlChanged(e: Event) {
         // tslint:disable-next-line:no-unused-expression
