@@ -10,10 +10,7 @@ class Nav {
     private _navs: INavLink[];
 
     private _template: string;
-    private _microTemplate: string;
     private _module: HTMLElement | null;
-    private _list: HTMLUListElement | null;
-
     constructor(name: string, navs: INavLink[]) {
         this._navs = navs;
         this._name = name;
