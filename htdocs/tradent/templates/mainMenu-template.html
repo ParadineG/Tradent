@@ -1,12 +1,15 @@
-
-<nav id="mainMenu" 
-class="navbar navbar-expand-lg navbar-fixed-top 
-navbar-inverse bg-inverse">
-    <ul class="navbar-nav">
-    </ul>
-    <script id="navMicroTemplate" type="text/template">
-        <li class="nav-item{{active}}">
-            <a href="{{link}}" class="nav-link">{{name}}</a>
+<nav id="mainMenu" class="navbar justify-content-start">
+    <a class="navbar-brand col-2 text-center h2" href=""><h2>Tradent</h2></a>
+    <ul class="myNav nav nav-pills align-middle col-8">
+        <li class="nav-item flex-fill clearfix mr-1">
+            <a href="" class="nav-link rounded-0 bg-success text-center py-4 active disabled">ACQUIRE</a>
+            <a href="#acquire/item" class="nav-link rounded-0 bg-dark text-center float-left mr-1 px-5 active">ITEM</a>
+            <a href="#acquire/service" class="nav-link rounded-0 bg-dark text-center float-right px-5 active">SERVICE</a>   
         </li>
-    </script>
+        <li class="nav-item flex-fill align-middle clearfix">
+            <a href="" class="nav-link rounded-0 bg-success text-center py-4 active disabled">PROVIDE</a>
+            <a href="#provide/item" class="nav-link rounded-0 bg-dark text-center float-left px-5 mr-1 active">ITEM</a>
+            <a href="#provide/service" class="nav-link rounded-0 bg-dark text-center float-right px-5 active">SERVICE</a>
+        </li>
+    </ul>
 </nav>

@@ -12,7 +12,7 @@ class Nav {
     private _template: string;
     private _microTemplate: string;
     private _module: HTMLElement | null;
-    private _list: HTMLUListElement;
+    private _list: HTMLUListElement | null;
 
     constructor(name: string, navs: INavLink[]) {
         this._navs = navs;
@@ -27,30 +27,15 @@ class Nav {
         if (this._module) {
             this._module.outerHTML = this._template;
             this._module = document.getElementById(this._name);
-            if (this._module) {
-                const temp = this._module.querySelector('script');
-                if (temp) {
-                    this._microTemplate = temp.innerText;
-                    this._list = this._module.getElementsByTagName('ul').item(0);
-                }
-            }
         }
     }
     private _bindEvents() {
         window.addEventListener('hashchange', this._urlChanged.bind(this));
     }
     private _render() {
-        let navLinks = '';
-        this._navs.forEach(
-            (value: INavLink) => {
-                const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{name}}', value.name);
-                const parsePass2 = Helper.parseHTMLString(parsePass1, '{{link}}', value.link);
-                const setActive = (window.location.hash === value.link) ? 'active' : '';
-                const parsePass3 = Helper.parseHTMLString(parsePass2, '{{active}}', setActive);
-                navLinks += parsePass3;
-            }
-        );
-        this._list.innerHTML = navLinks;
+        
+                //const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{name}}', value.name);
+
     }
     private _urlChanged(e: Event) {
         // tslint:disable-next-line:no-unused-expression

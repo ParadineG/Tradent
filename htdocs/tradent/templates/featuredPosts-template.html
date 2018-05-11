@@ -1,13 +1,15 @@
-<main id="main">
-    Hello
-    <div id="restOutput"></div>
-    <button id="refresh">Uuenda</button>
-
-    <section id="animalsModule">
-        <div>
-            <input type="text">
-            <button class="button">Vajuta</button>
-            <ul></ul>
+<main id="posts" class="col-8 mh-100">
+    <div id="featured-posts"
+        class="d-flex align-content flex-wrap justify-content-around">
+    </div>
+    <script id="featured-post" type="text/template">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{cardLink}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{cardTitle}}</h5>
+                <p class="card-text">{{cardDescription}}</p>
+                <a href="#" class="btn btn-success rounded-0">Details</a>
+            </div>
         </div>
-    </section>
+    </script>
 </main>
