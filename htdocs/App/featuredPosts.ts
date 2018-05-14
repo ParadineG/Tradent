@@ -4,23 +4,24 @@
 console.log('FeaturedPosts.ts');
 
 interface IPost {
-    title: string;
+    name: string;
     description: string;
-    link: string;
+    photo: string;
 }
 
 class FeaturedPosts extends Page {
 
-    private _posts: IPost[] = [{title: 'Auto', description: 'Üks Auto', link: 'temp.JPG'},
-                                    {title: 'Taevas', description: 'Üks Taevas', link: 'temp.JPG'},
-                                    {title: 'Taevas2', description: 'Üks Taevas2', link: 'temp.JPG'},
-                                    {title: 'Tilgad', description: 'Üks Tilgad', link: 'temp.JPG'},
-                                    {title: 'Tilk', description: 'Üks Tilk', link: 'temp.JPG'},
-                                    {title: 'TuhmSulps', description: 'Üks TuhmSulps', link: 'temp.JPG'},
-                                    {title: 'TuhmSulps2', description: 'Üks TuhmSulps2', link: 'temp.JPG'},
-                                    {title: 'VeeSulps', description: 'Üks VeeSulps', link: 'temp.JPG'},
-                                    {title: 'VeeSulps2', description: 'Üks VeeSulps2', link: 'temp.JPG'},
-                                    {title: 'VeeT6us', description: 'Üks VeeT6us', link: 'temp.JPG'}];
+    private _posts: IPost[] = [];
+    /*= [{name: 'Auto', description: 'Üks Auto', photo: 'temp.JPG'},
+                                    {name: 'Taevas', description: 'Üks Taevas', photo: 'temp.JPG'},
+                                    {name: 'Taevas2', description: 'Üks Taevas2', photo: 'temp.JPG'},
+                                    {name: 'Tilgad', description: 'Üks Tilgad', photo: 'temp.JPG'},
+                                    {name: 'Tilk', description: 'Üks Tilk', photo: 'temp.JPG'},
+                                    {name: 'TuhmSulps', description: 'Üks TuhmSulps', photo: 'temp.JPG'},
+                                    {name: 'TuhmSulps2', description: 'Üks TuhmSulps2', photo: 'temp.JPG'},
+                                    {name: 'VeeSulps', description: 'Üks VeeSulps', photo: 'temp.JPG'},
+                                    {name: 'VeeSulps2', description: 'Üks VeeSulps2', photo: 'temp.JPG'},
+                                    {name: 'VeeT6us', description: 'Üks VeeT6us', photo: 'temp.JPG'}];*/
     private _template: string;
     private _microTemplate: string;
     private _list: HTMLElement | null;
@@ -52,16 +53,19 @@ class FeaturedPosts extends Page {
     }
     protected _render() {
         if (this._list) {
-            let data = '';
+            const data = Helper.getHTMLTemplate(`data/featuredPosts.php`);
+            this._posts = JSON.parse(data) as IPost[];
+
+            let dataHTML = '';
             this._posts.forEach(
                 (value: IPost) => {
-                    const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{cardTitle}}', value.title);
-                    const parsePass2 = Helper.parseHTMLString(parsePass1, '{{cardLink}}', `photos/${value.link}`);
+                    const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{cardTitle}}', value.name);
+                    const parsePass2 = Helper.parseHTMLString(parsePass1, '{{cardLink}}', `photos/${value.photo}`);
                     const parsePass3 = Helper.parseHTMLString(parsePass2, '{{cardDescription}}', value.description);
-                    data += parsePass3;
+                    dataHTML += parsePass3;
                 }
             );
-            this._list.innerHTML = data;
+            this._list.innerHTML = dataHTML;
         }
     }
 }

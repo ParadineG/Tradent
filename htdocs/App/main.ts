@@ -56,9 +56,11 @@ class App {
         } else if (window.location.hash === this._mainNavLinks[1].link) {
             // this._page = new ProductSell(value.link);
         } else if (window.location.hash === this._mainNavLinks[2].link) {
-            this._page = new ProvideItem();
+            // this._page = new ProvideItem();
+            this._page = new FeaturedPosts();
         } else if (window.location.hash === this._mainNavLinks[3].link) {
-            this._page = new ProvideService();
+            // this._page = new ProvideService();
+            this._page = new FeaturedPosts();
         } else if (window.location.hash === this._personalNavLinks[0].link) {
             this._page = new MyProfile();
         } else if (window.location.hash === this._personalNavLinks[1].link) {

@@ -1,3 +1,10 @@
+<?php	
+session_start();
+ini_set('display_errors','0');
+if(isset($_SESSION['login']))
+{
+?>
+        
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -53,3 +60,7 @@
         <script src="app.js" type="text/javascript"></script>
     </body>
 </html>
+
+<?php
+}
+?>

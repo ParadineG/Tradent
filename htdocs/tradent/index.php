@@ -1,10 +1,12 @@
 <?php
 	
 	session_start();
-	ini_set('display_errors','1');
+	ini_set('display_errors','0');
 	if(isset($_SESSION['login']))
 	{
-  		echo "Your session is running " . $_SESSION['login'];
+		header("location: main.php");
+	} else {
+		header("location: login.php");
 	}
 
 ?>

@@ -15,7 +15,7 @@
 		{
 			$_SESSION['login'] = $_POST['email'];
 			$_SESSION['message'] = 'Good Job';
-			header("location: myitems.php");
+			header("location: main.php");
 		}
 		else
 		{
