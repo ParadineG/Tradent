@@ -124,7 +124,7 @@ if(isset($_POST["submit"]))
 			if($con->query($additem) === true)
 			{
 				$_SESSION['message'] = "Registration Succesful! Welcome MR. $username";
-				header("location: login.php");
+				header("location: main.php");
 			}
 			else
 			{		
