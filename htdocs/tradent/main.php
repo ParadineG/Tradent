@@ -62,5 +62,7 @@ if(isset($_SESSION['login']))
 </html>
 
 <?php
+} else {
+    header("location: login.php");
 }
 ?>
