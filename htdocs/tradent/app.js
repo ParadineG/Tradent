@@ -449,30 +449,33 @@ var App = /** @class */ (function () {
     App.prototype._urlChanged = function () {
         console.log(window.location.hash);
         if (window.location.hash === this._mainNavLinks[0].link) {
-            this._page = new AcquireItem();
+            // this._page = new AcquireItem();
+            this._page = new FeaturedPosts();
         }
         else if (window.location.hash === this._mainNavLinks[1].link) {
-            // this._page = new ProductSell(value.link);
+            // this._page = new AquireService();
+            this._page = new FeaturedPosts();
         }
         else if (window.location.hash === this._mainNavLinks[2].link) {
-            // this._page = new ProvideItem();
-            this._page = new FeaturedPosts();
+            this._page = new ProvideItem();
         }
         else if (window.location.hash === this._mainNavLinks[3].link) {
-            // this._page = new ProvideService();
-            this._page = new FeaturedPosts();
+            this._page = new ProvideService();
         }
         else if (window.location.hash === this._personalNavLinks[0].link) {
             this._page = new MyProfile();
         }
         else if (window.location.hash === this._personalNavLinks[1].link) {
-            // this._page = new ProductSell(value.link);
+            // this._page = new MyItems();
         }
         else if (window.location.hash === this._personalNavLinks[2].link) {
-            // this._page = new ServiceBuy(value.link);
+            // this._page = new Wishlist();
         }
         else if (window.location.hash === this._personalNavLinks[3].link) {
-            // this._page = new ServiceSell(value.link);
+            // this._page = new TradeHistory();
+        }
+        else if (window.location.hash === this._personalNavLinks[4].link) {
+            // this._page = new Messages();
         }
         else if (window.location.hash === '#person/self/edit') {
             this._page = new MyProfileEdit();
