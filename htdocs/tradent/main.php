@@ -19,27 +19,27 @@ if(isset($_SESSION['login']))
             crossorigin="anonymous">
         <link rel="stylesheet" href="style.css" type="text/css">
     </head>
-    <body>
+    <body class="bg-white">
         <header>
-            <nav id="mainMenu">Loading...</nav>
+            <nav id="main-menu">Loading...</nav>
         </header>
         <div class="d-flex">
-            <nav id="personalMenu">Loading...</nav>
+            <nav id="personal-menu">Loading...</nav>
             <main></main>
         </div>
-        <footer>
+        <footer class="bg-black">
             <ul class="nav">
-                <li class="nav-item mb-2 align-middle">
-                    <a href="#person/self/items" class="nav-link rounded-0 text-light">About Tradent</a>   
+                <li class="nav-item align-middle">
+                    <a href="#person/self/items" class="nav-link rounded-0 text-white">About Tradent</a>   
                 </li>
-                <li class="nav-item mb-2 align-middle">
-                    <a href="#person/self/wish" class="nav-link rounded-0 text-light">Privacy</a>
+                <li class="nav-item align-middle">
+                    <a href="#person/self/wish" class="nav-link rounded-0 text-white">Privacy</a>
                 </li>
-                <li class="nav-item mb-2 align-middle">
-                        <a href="#person/self/trade" class="nav-link rounded-0 text-light">Help</a>   
+                <li class="nav-item align-middle">
+                        <a href="#person/self/trade" class="nav-link rounded-0 text-white">Help</a>   
                 </li>
-                <li class="nav-item mb-2 align-middle">
-                    <a href="#person/self/messages" class="nav-link rounded-0 text-light">FAQ</a>
+                <li class="nav-item align-middle">
+                    <a href="#person/self/messages" class="nav-link rounded-0 text-white">FAQ</a>
                 </li>
             </ul>
         </footer>

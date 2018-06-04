@@ -22,7 +22,7 @@ class FeaturedPosts extends Page {
                                     {name: 'VeeSulps', description: 'Üks VeeSulps', photo: 'temp.JPG'},
                                     {name: 'VeeSulps2', description: 'Üks VeeSulps2', photo: 'temp.JPG'},
                                     {name: 'VeeT6us', description: 'Üks VeeT6us', photo: 'temp.JPG'}];*/
-    private _template: string;
+    private _template: string | undefined;
     private _microTemplate: string;
     private _list: HTMLElement | null;
     private _module: HTMLElement | null;
@@ -30,42 +30,45 @@ class FeaturedPosts extends Page {
     constructor() {
         super();
         this._cacheDOM();
-        this._bindEvents();
-        this._render();
     }
-    protected _cacheDOM() {
-        this._template = Helper.getHTMLTemplate(`templates/featuredPosts-template.html`);
+    protected async _cacheDOM() {
         this._module = document.querySelector('main');
-        if (this._module) {
+        this._template = await Helper.getHTMLTemplate(`featured-posts`);
+
+        if (this._module && this._template) {
             this._module.outerHTML = this._template;
-            this._module = document.getElementById('posts');
+            this._module = document.getElementById('featured-posts');
             if (this._module) {
                 const temp = this._module.querySelector('script');
                 if (temp) {
                     this._microTemplate = temp.innerText;
                 }
-                this._list = this._module.querySelector('#featured-posts');
+                this._list = this._module.querySelector('#main-item-list');
+                this._bindEvents();
+                this._render();
             }
         }
     }
     protected _bindEvents() {
 
     }
-    protected _render() {
+    protected async _render() {
         if (this._list) {
-            const data = Helper.getHTMLTemplate(`data/featuredPosts.php`);
-            this._posts = JSON.parse(data) as IPost[];
+            const data = await Helper.fetchContent(`data/featuredPosts.php`);
+            if (data) {
+                this._posts = JSON.parse(data) as IPost[];
 
-            let dataHTML = '';
-            this._posts.forEach(
-                (value: IPost) => {
-                    const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{cardTitle}}', value.name);
-                    const parsePass2 = Helper.parseHTMLString(parsePass1, '{{cardLink}}', `photos/${value.photo}`);
-                    const parsePass3 = Helper.parseHTMLString(parsePass2, '{{cardDescription}}', value.description);
-                    dataHTML += parsePass3;
-                }
-            );
-            this._list.innerHTML = dataHTML;
+                let dataHTML = '';
+                this._posts.forEach(
+                    (value: IPost) => {
+                        const parsePass1 = Helper.parseHTMLString(this._microTemplate, '{{cardTitle}}', value.name);
+                        const parsePass2 = Helper.parseHTMLString(parsePass1, '{{cardLink}}', `photos/${value.photo}`);
+                        const parsePass3 = Helper.parseHTMLString(parsePass2, '{{cardDescription}}', value.description);
+                        dataHTML += parsePass3;
+                    }
+                );
+                this._list.innerHTML = dataHTML;
+            }
         }
     }
 }

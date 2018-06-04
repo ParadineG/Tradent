@@ -1,3 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+:root {
+    font-family: 'Roboto', sans-serif!important;
+    --c-green: #28B78D;
+    --c-black: #0F0F0F;
+    --c-yellow: #F2C94C;
+    --c-gray: #E0E0E0;
+    --c-tgray: #828282;
+    --c-white: #F2F2F2;
+}
+.bg-green {
+    background-color: var(--c-green)!important;
+}
+.bg-black {
+    background-color: var(--c-black)!important;
+}
+.bg-yellow {
+    background-color: var(--c-yellow)!important;
+}
+.bg-gray {
+    background-color: var(--c-gray)!important;
+}
+.bg-white {
+    background-color: var(--c-white)!important;
+}
+.text-black {
+    color: var(--c-black)!important;
+}
+.text-white {
+    color: var(--c-white)!important;
+}
+.text-gray {
+    color: var(--c-tgray)!important;
+}
+#main-menu {
+    padding: 12px 12px 0 12px;
+}
+#main-menu .myNav, main, #main-item-list {
+    min-width: 848px;
+    max-width: 848px;
+}
+#main-menu .navbar-brand {
+    padding: 9px 42px 39px 30px;
+}
+#main-menu li {
+    min-width: 421px;
+    max-width: 421px;
+}
+#main-menu li > a:first-child {
+    min-height: 78px;
+    max-height: 78px;
+    padding: 20px;
+    font-size: 14px;
+}
+#main-menu li > a:nth-child(1n+2) {
+    min-height: 31px;
+    max-height: 31px;
+    min-width: 210px;
+    padding: 5px;
+    font-size: 12px;
+}
+#main-item-list {
+    column-gap: 6px;
+    padding: 0;
+}
+#main-item-list > li {
+    display: inline-block;
+    min-width: 278px;
+    max-width: 279px;
+}
+#personal-menu {
+    min-width: 296px;
+    max-width: 296px;
+    padding: 59px 12px;
+}
+#userName{
+    font-size: 18px;
+    font-weight: bold;
+}
+#personal-menu ul a {
+    padding: 6px 0;
+    font-size: 14px;
+}
+#personal-menu > button, #personal-menu ul a, body > footer, body > footer > ul {
+    min-height: 36px;
+    max-height: 36px;
+}
+body > footer {
+    padding-left: 26px;
+}
+body > footer li a{
+    padding: 7px 14px!important;
+    font-size: 14px;
+}
+
 header {
     position: top;
     background-color:white;
@@ -6,15 +101,11 @@ header {
     display:inline-block;
 }
 
-
-
 footer {
    /*position: fixed;*/
    left: 0;
    bottom: 0;
    width: 100%;
-   background-color: black;
-   color: white;
    text-align: center;
 }
 .alert

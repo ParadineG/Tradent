@@ -4,7 +4,7 @@ console.log('myProfileEdit.ts');
 
 class MyProfileEdit extends Page {
 
-    private _template: string;
+    private _template: string | undefined;
     private _module: HTMLElement | null;
     private _buttonCancel: HTMLButtonElement | null;
     private _buttonSave: HTMLButtonElement | null;
@@ -28,13 +28,12 @@ class MyProfileEdit extends Page {
     constructor() {
         super();
         this._cacheDOM();
-        this._bindEvents();
-        this._render();
     }
-    protected _cacheDOM() {
-        this._template = Helper.getHTMLTemplate(`templates/myProfileEdit-template.html`);
+    protected async _cacheDOM() {
         this._module = document.querySelector('main');
-        if (this._module) {
+        this._template = await Helper.getHTMLTemplate(`myProfileEdit`);
+
+        if (this._module && this._template) {
             this._module.outerHTML = this._template;
             this._module = document.getElementById('myProfileEdit');
             if (this._module) {
@@ -46,6 +45,9 @@ class MyProfileEdit extends Page {
                 this._facebook = this._module.querySelector('#facebookLink');
                 this._instagram = this._module.querySelector('#instagramLink');
                 this._twitter = this._module.querySelector('#twitterLink');
+
+                this._bindEvents();
+                this._render();
             }
         }
     }

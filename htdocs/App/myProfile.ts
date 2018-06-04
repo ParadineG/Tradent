@@ -4,7 +4,7 @@ console.log('myProfile.ts');
 
 class MyProfile extends Page {
 
-    private _template: string;
+    private _template: string | undefined;
     private _module: HTMLElement | null;
     private _button: HTMLButtonElement | null;
     private _name: HTMLHeadingElement | null;
@@ -26,13 +26,12 @@ class MyProfile extends Page {
     constructor() {
         super();
         this._cacheDOM();
-        this._bindEvents();
-        this._render();
     }
-    protected _cacheDOM() {
-        this._template = Helper.getHTMLTemplate(`templates/myProfile-template.html`);
+    protected async _cacheDOM() {
         this._module = document.querySelector('main');
-        if (this._module) {
+        this._template = await Helper.getHTMLTemplate(`myProfile`);
+
+        if (this._module && this._template) {
             this._module.outerHTML = this._template;
             this._module = document.getElementById('myProfile');
 
@@ -47,6 +46,8 @@ class MyProfile extends Page {
                 this._twitter = this._module.querySelector('#twitterLink');
             }
         }
+        this._bindEvents();
+        this._render();
     }
     // tslint:disable-next-line:prefer-function-over-method
     protected _bindEvents() {

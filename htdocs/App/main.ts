@@ -7,7 +7,6 @@
 /// <reference path='provideItem.ts'/>
 /// <reference path='provideService.ts'/>
 console.log('main.ts');
-
 class App {
     private _mainNavLinks: INavLink[] = [{name: 'Item', link: '#acquire/item'},
                                         {name: 'Service', link: '#acquire/service'},
@@ -28,21 +27,20 @@ class App {
         this._navLinks.concat(this._mainNavLinks, this._personalNavLinks);
         this._bindEvents();
         this._setup();
-        this._urlChanged();
     }
     private _bindEvents() {
         window.addEventListener('hashchange', this._urlChanged.bind(this));
     }
-    private _setup() {
+    private async _setup() {
         if (window.location.hash === '') {
             // window.location.hash = this._mainNavLinks[0].link;
             this._page = new FeaturedPosts();
         }
-        const nav = new Nav('mainMenu', this._mainNavLinks);
+        const nav = new Nav('main-menu', this._mainNavLinks);
         // tslint:disable-next-line:no-unused-expression
         nav;
 
-        const personalnav = new Nav('personalMenu', this._personalNavLinks);
+        const personalnav = new Nav('personal-menu', this._personalNavLinks);
         // tslint:disable-next-line:no-unused-expression
         personalnav;
         this._urlChanged();
